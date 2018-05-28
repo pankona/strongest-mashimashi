@@ -110,10 +110,11 @@ func main() {
 const index = `
 <html>
 <head>
-	<title>hello mashimashi</title>
+	<title>Generate a sentence with 3 random words</title>
 	<script>
 	window.addEventListener('load', _ => {
 		document.getElementById('submit').addEventListener('click', _ => {
+			document.getElementById('string').textContent = "generating... (it will take about 5 seconds or little more)";
 			fetch('/wordlist?num=3', {
 				method: 'GET'
 			}).then(response => {
@@ -132,7 +133,7 @@ const index = `
 	</script>
 </head>
 <body>
-<div>hello mashimashi!</div>
+<div>Generate a sentence with 3 random words</div>
 <div><button id="submit">generate</button></div>
 <div id="string"></div>
 </body>
