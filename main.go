@@ -118,8 +118,19 @@ const index = `
 </head>
 <body>
 <div>Generate a sentence with 3 random words</div>
-<div><button id="submit">generate</button></div>
-<div id="string"></div>
+<br>
+<div>concept</div>
+<li>Choice 3 words from English dictionary to generate strong password</li>
+<li>For easy remember, 3 words are choose as "adjective" "adjective" "noun"</li>
+<br>
+<br>
+<div><button id="submit">Push to generate</button></div>
+<br>
+<br>
+<div id="string">--- --- ---</div>
+<br>
+<br>
+contact: <a href="https://twitter.com/pankona">@pankona (twitter)</a>
 </body>
 </html>
 `
