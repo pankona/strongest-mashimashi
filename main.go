@@ -125,7 +125,7 @@ const index = `
 <body>
 <div>Generate a sentence with 3 random words</div>
 <br>
-<div>concept</div>
+<div>Concept</div>
 <li>Choice 3 words from English dictionary to generate strong password.</li>
 <li>For easy remember, 3 words are choose as "adjective" "adjective" "noun".</li>
 <li>Words that are too short (less than 3) or too long (more than 10) are excluded.</li>
