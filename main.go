@@ -28,7 +28,7 @@ func (h *handler) Get(ctx context.Context, w http.ResponseWriter, r *http.Reques
 	switch r.URL.Path {
 	case "/":
 		w.Write([]byte(index))
-	case "/wordlist":
+	case "/api/v1/wordlist":
 		// adjective 1
 		adj1 := rand.Intn(adjectiveLen)
 		// adjective 2
@@ -39,17 +39,11 @@ func (h *handler) Get(ctx context.Context, w http.ResponseWriter, r *http.Reques
 	}
 }
 
-func (h *handler) Post(ctx context.Context, w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("post!"))
-}
-
 func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ctx := appengine.NewContext(r)
 	switch r.Method {
 	case http.MethodGet:
 		h.Get(ctx, w, r)
-	case http.MethodPost:
-		h.Post(ctx, w, r)
 	default:
 		w.Write([]byte("unimplemented method!"))
 	}
@@ -105,7 +99,7 @@ const index = `
 	<script>
 	window.addEventListener('load', _ => {
 		document.getElementById('submit').addEventListener('click', _ => {
-			fetch('/wordlist?num=3', {
+			fetch('/api/v1/wordlist', {
 				method: 'GET'
 			}).then(response => {
 				if (response.ok) {
