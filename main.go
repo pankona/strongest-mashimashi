@@ -15,6 +15,7 @@ import (
 )
 
 const (
+	// inspect word files in advance by "wc -l" command
 	nounLen      = 76216
 	adjectiveLen = 26664
 )
@@ -125,8 +126,9 @@ const index = `
 <div>Generate a sentence with 3 random words</div>
 <br>
 <div>concept</div>
-<li>Choice 3 words from English dictionary to generate strong password</li>
-<li>For easy remember, 3 words are choose as "adjective" "adjective" "noun"</li>
+<li>Choice 3 words from English dictionary to generate strong password.</li>
+<li>For easy remember, 3 words are choose as "adjective" "adjective" "noun".</li>
+<li>Words that are too short (less than 3) or too long (more than 10) are excluded.</li>
 <br>
 <br>
 <div><button id="submit">Push to generate</button></div>
