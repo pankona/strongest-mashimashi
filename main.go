@@ -129,6 +129,7 @@ const index = `
 <li>Choice 3 words from English dictionary to generate strong password.</li>
 <li>For easy remember, 3 words are choose as "adjective" "adjective" "noun".</li>
 <li>Words that are too short (less than 3) or too long (more than 10) are excluded.</li>
+<li>Note that since a word may (in dictionary) include space or hyphen, generated sentence may look like more than 3 words.</li>
 <br>
 <br>
 <div><button id="submit">Push to generate</button></div>
