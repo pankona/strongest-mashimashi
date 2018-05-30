@@ -96,6 +96,11 @@ const index = `
 <html>
 <head>
 	<title>Generate a sentence with 3 random words</title>
+	<style>
+	body {
+		font-family: Sans-Serif;
+	}
+	</style>
 	<script>
 	window.addEventListener('load', _ => {
 		document.getElementById('submit').addEventListener('click', _ => {
@@ -108,7 +113,7 @@ const index = `
 					throw new Error();
 				}
 			}).then(text => {
-				document.getElementById('string').textContent = text;
+				document.getElementById('words').textContent = text;
 			}).catch(error => {
 				console.log(error);
 			});
@@ -127,7 +132,7 @@ const index = `
 <div><button id="submit">Push to generate</button></div>
 <br>
 <br>
-<div id="string">--- --- ---</div>
+<div id="words" style="font-size:x-large">--- --- ---</div>
 <br>
 <br>
 contact: <a href="https://twitter.com/pankona">@pankona (twitter)</a>
