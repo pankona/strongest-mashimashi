@@ -99,7 +99,6 @@ const index = `
 	<script>
 	window.addEventListener('load', _ => {
 		document.getElementById('submit').addEventListener('click', _ => {
-			document.getElementById('string').textContent = "generating... (it will take about 5 seconds or little more)";
 			fetch('/wordlist?num=3', {
 				method: 'GET'
 			}).then(response => {
