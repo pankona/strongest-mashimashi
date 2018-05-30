@@ -21,8 +21,12 @@
 
 
 [[constraint]]
+  name = "github.com/labstack/gommon"
+  version = "0.2.5"
+
+[[constraint]]
   branch = "master"
-  name = "github.com/pankona/oxford-dict-api-client-go"
+  name = "golang.org/x/net"
 
 [[constraint]]
   name = "google.golang.org/appengine"
