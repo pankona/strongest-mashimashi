@@ -1,5 +1,5 @@
 
-APP_YAML_DIR := $(HOME)/go/appengine
+APP_YAML_DIR := $(CURDIR)
 
 all:
 
