@@ -90,7 +90,7 @@ func main() {
 const index = `
 <html>
 <head>
-	<title>Generate a sentence with 3 random words</title>
+	<title>Generate a phrase with 3 random words</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<style>
 	body {
@@ -109,7 +109,7 @@ const index = `
 					throw new Error();
 				}
 			}).then(text => {
-				document.getElementById('words').textContent = text;
+				document.getElementById('phrase').textContent = text;
 			}).catch(error => {
 				console.log(error);
 			});
@@ -130,7 +130,7 @@ const index = `
 		document.body.removeChild(tmp);
 	}
 
-	let copy = (id) => {
+	let copyWithoutWhiteSpace = (id) => {
 		text = document.getElementById(id).textContent
 		if (text == '--- --- ---') {
 			return
@@ -140,21 +140,20 @@ const index = `
 	</script>
 </head>
 <body>
-<div>Generate a sentence with 3 random words</div>
+<div>Generate a phrase with 3 random words</div>
 <br>
 <div>Concept</div>
-<li>Choice 3 words from English dictionary to generate strong password.</li>
+<li>Choice 3 words from English dictionary to generate strong password or passphrase.</li>
 <li>For easy remember, 3 words are choose as "adjective" "adjective" "noun".</li>
 <li>Words that are too short (less than 3) or too long (more than 10) are excluded.</li>
-<li>Note that since a word may (in dictionary) include space or hyphen, generated sentence may look like more than 3 words.</li>
+<li>Note that since a word (listed in dictionary) may include whitespace or hyphen, the generated phrase may look like more than 3 words.</li>
 <br>
 <br>
-<span><button id="submit">Push to generate</button></span>
-<span><button id="copy" onclick="copy('words')">Copy to clipboard (without whitespace)</button></span>
+<span><button id="submit">Push to generate a phrase</button></span>
+<span><button id="copy" onclick="copyWithoutWhiteSpace('phrase')">Copy to clipboard (without whitespace)</button></span>
 <br>
 <br>
-<div id="words" style="font-size:x-large">--- --- ---</div>
-<input type="hidden" id="wordsforcopy" value="">
+<div id="phrase" style="font-size:x-large">--- --- ---</div>
 <br>
 <br>
 Contact: @pankona (<a href="https://twitter.com/pankona">twitter</a>, <a href="https://github.com/pankona">github</a>)
