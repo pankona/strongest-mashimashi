@@ -158,7 +158,8 @@ const index = `
 <li>Note that since a word may (in dictionary) include space or hyphen, generated sentence may look like more than 3 words.</li>
 <br>
 <br>
-<div><button id="submit">Push to generate</button></div>
+<span><button id="submit">Push to generate</button></span>
+<span><button id="copy" onclick="copy('words')">Copy to clipboard</button></span>
 <br>
 <br>
 <div id="words" style="font-size:x-large">--- --- ---</div>
