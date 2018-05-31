@@ -116,11 +116,11 @@ const index = `
 		});
 	});
 
-	let copyText = (str) => {
-		var tmp = document.createElement('div');
+	const copyText = (str) => {
+		let tmp = document.createElement('div');
 		tmp.appendChild(document.createElement('pre')).textContent = str;
 
-		var s = tmp.style;
+		let s = tmp.style;
 		s.position = 'fixed';
 		s.left = '-100%';
 
@@ -130,7 +130,7 @@ const index = `
 		document.body.removeChild(tmp);
 	}
 
-	let copyWithoutWhiteSpace = (id) => {
+	const copyWithoutWhiteSpace = (id) => {
 		text = document.getElementById(id).textContent
 		if (text == '--- --- ---') {
 			return
