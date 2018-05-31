@@ -130,6 +130,14 @@ const index = `
 		document.body.removeChild(tmp);
 	}
 
+	const copyRaw = (id) => {
+		const text = document.getElementById(id).textContent
+		if (text === '--- --- ---') {
+			return
+		}
+		copyText(text);
+	}
+
 	const copyWithoutWhiteSpace = (id) => {
 		const text = document.getElementById(id).textContent
 		if (text === '--- --- ---') {
@@ -150,6 +158,7 @@ const index = `
 <br>
 <br>
 <span><button id="submit">Push to generate a phrase</button></span>
+<span><button id="copy" onclick="copyRaw('phrase')">Copy to clipboard</button></span>
 <span><button id="copy" onclick="copyWithoutWhiteSpace('phrase')">Copy to clipboard (without whitespace)</button></span>
 <br>
 <br>
