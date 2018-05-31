@@ -132,7 +132,7 @@ const index = `
 
 	const copyWithoutWhiteSpace = (id) => {
 		text = document.getElementById(id).textContent
-		if (text == '--- --- ---') {
+		if (text === '--- --- ---') {
 			return
 		}
 		copyText(text.replace(/\s+/g, ""));
