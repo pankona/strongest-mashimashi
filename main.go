@@ -91,6 +91,7 @@ const index = `
 <html>
 <head>
 	<title>Generate a sentence with 3 random words</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<style>
 	body {
 		font-family: Sans-Serif;
@@ -132,7 +133,7 @@ const index = `
 <div id="words" style="font-size:x-large">--- --- ---</div>
 <br>
 <br>
-contact: <a href="https://twitter.com/pankona">@pankona (twitter)</a>
+Contact: @pankona (<a href="https://twitter.com/pankona">twitter</a>, <a href="https://github.com/pankona">github</a>)
 </body>
 </html>
 `
