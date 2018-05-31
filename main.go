@@ -90,17 +90,21 @@ func main() {
 const index = `
 <html>
 <head>
-	<title>Generate a phrase with 3 random words</title>
+	<title>PhraGen</title>
 	<meta charset="utf-8">
-	<meta name="description" content="Generate a phrase with 3 random words"/>
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta property="og:image" content="https://github.com/pankona/strongest-mashimashi/raw/master/logo/pancake.jpg" width="1200">
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:description" content="Generate a phrase with 3 random words">
-	<meta name="twitter:title" content="Generate a phrase with 3 random words">
-	<meta name="twitter:url" content="https://strongest-mashimashi.appspot.com/">
-	<meta name="twitter:image" content="https://github.com/pankona/strongest-mashimashi/raw/master/logo/pancake.jpg">
-	<meta name="twitter:creator" content="@pankona">
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<meta name="description" content="Generate a phrase with 3 random words" />
+	<meta property="og:title" content="PhraGen" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://strongest-mashimashi.appspot.com/" />
+	<meta property="og:image" content="https://github.com/pankona/strongest-mashimashi/raw/master/logo/pancake.jpg" width="1200" />
+	<meta property="og:description" content="Generate a phrase with 3 random words" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="PhraGen" />
+	<meta name="twitter:url" content="https://strongest-mashimashi.appspot.com/" />
+	<meta name="twitter:image" content="https://github.com/pankona/strongest-mashimashi/raw/master/logo/pancake.jpg" />
+	<meta name="twitter:description" content="Generate a phrase with 3 random words" />
+	<meta name="twitter:creator" content="@pankona" />
 	<style>
 	body {
 		font-family: Sans-Serif;
