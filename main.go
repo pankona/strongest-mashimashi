@@ -49,7 +49,7 @@ func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func readWords(filename string, lines int) ([]string, error) {
+func loadWords(filename string, lines int) ([]string, error) {
 	f, err := os.Open(filename)
 	if err != nil {
 		return nil, errors.New("failed to open " + filename + ": " + err.Error())
@@ -71,13 +71,13 @@ func main() {
 	var err error
 	h := &handler{}
 
-	h.noun, err = readWords("noun.txt", nounLen)
+	h.noun, err = loadWords("noun.txt", nounLen)
 	if err != nil {
 		log.Errorf("failed to read noun: %s", err.Error())
 		return
 	}
 
-	h.adjective, err = readWords("adjective.txt", adjectiveLen)
+	h.adjective, err = loadWords("adjective.txt", adjectiveLen)
 	if err != nil {
 		log.Errorf("failed to read adjective: %s", err.Error())
 		return
