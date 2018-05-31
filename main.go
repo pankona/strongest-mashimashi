@@ -109,7 +109,6 @@ const index = `
 					throw new Error();
 				}
 			}).then(text => {
-				deselect();
 				document.getElementById('words').textContent = text;
 			}).catch(error => {
 				console.log(error);
@@ -117,34 +116,26 @@ const index = `
 		});
 	});
 
-	let select = (id) => {
-		deselect();
-		if (document.selection) {
-			var range = document.body.createTextRange();
-			range.moveToElementText(document.getElementById(id));
-			range.select();
-		} else if (window.getSelection) {
-			var range = document.createRange();
-			range.selectNode(document.getElementById(id));
-			window.getSelection().addRange(range);
-		}
-	}
+	let copyText = (str) => {
+		var tmp = document.createElement('div');
+		tmp.appendChild(document.createElement('pre')).textContent = str;
 
-	let deselect = () => {
-		if (document.selection) {
-			document.selection.empty();
-		} else if (window.getSelection) {
-			window.getSelection().removeAllRanges();
-		}
+		var s = tmp.style;
+		s.position = 'fixed';
+		s.left = '-100%';
+
+		document.body.appendChild(tmp);
+		document.getSelection().selectAllChildren(tmp);
+		document.execCommand('copy');
+		document.body.removeChild(tmp);
 	}
 
 	let copy = (id) => {
-		word = document.getElementById('words').textContent
-		if (word == '--- --- ---') {
+		text = document.getElementById(id).textContent
+		if (text == '--- --- ---') {
 			return
 		}
-		select(id);
-		document.execCommand('copy');
+		copyText(text.replace(/\s+/g, ""));
 	}
 	</script>
 </head>
@@ -159,10 +150,11 @@ const index = `
 <br>
 <br>
 <span><button id="submit">Push to generate</button></span>
-<span><button id="copy" onclick="copy('words')">Copy to clipboard</button></span>
+<span><button id="copy" onclick="copy('words')">Copy to clipboard (without whitespace)</button></span>
 <br>
 <br>
 <div id="words" style="font-size:x-large">--- --- ---</div>
+<input type="hidden" id="wordsforcopy" value="">
 <br>
 <br>
 Contact: @pankona (<a href="https://twitter.com/pankona">twitter</a>, <a href="https://github.com/pankona">github</a>)
