@@ -117,10 +117,10 @@ const index = `
 	});
 
 	const copyText = (str) => {
-		let tmp = document.createElement('div');
+		const tmp = document.createElement('div');
 		tmp.appendChild(document.createElement('pre')).textContent = str;
 
-		let s = tmp.style;
+		const s = tmp.style;
 		s.position = 'fixed';
 		s.left = '-100%';
 
@@ -131,7 +131,7 @@ const index = `
 	}
 
 	const copyWithoutWhiteSpace = (id) => {
-		text = document.getElementById(id).textContent
+		const text = document.getElementById(id).textContent
 		if (text === '--- --- ---') {
 			return
 		}
