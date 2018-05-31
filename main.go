@@ -109,12 +109,43 @@ const index = `
 					throw new Error();
 				}
 			}).then(text => {
+				deselect();
 				document.getElementById('words').textContent = text;
 			}).catch(error => {
 				console.log(error);
 			});
 		});
 	});
+
+	let select = (id) => {
+		deselect();
+		if (document.selection) {
+			var range = document.body.createTextRange();
+			range.moveToElementText(document.getElementById(id));
+			range.select();
+		} else if (window.getSelection) {
+			var range = document.createRange();
+			range.selectNode(document.getElementById(id));
+			window.getSelection().addRange(range);
+		}
+	}
+
+	let deselect = () => {
+		if (document.selection) {
+			document.selection.empty();
+		} else if (window.getSelection) {
+			window.getSelection().removeAllRanges();
+		}
+	}
+
+	let copy = (id) => {
+		word = document.getElementById('words').textContent
+		if (word == '--- --- ---') {
+			return
+		}
+		select(id);
+		document.execCommand('copy');
+	}
 	</script>
 </head>
 <body>
