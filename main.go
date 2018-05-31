@@ -140,7 +140,7 @@ const index = `
 	</script>
 </head>
 <body>
-<div>Generate a phrase with 3 random words</div>
+<div>Generate a phrase with 3 random words (version 0.1.0)</div>
 <br>
 <div>Concept</div>
 <li>Choice 3 words from English dictionary to generate strong password or passphrase.</li>
