@@ -28,7 +28,7 @@ func (h *handler) Get(ctx context.Context, w http.ResponseWriter, r *http.Reques
 	switch r.URL.Path {
 	case "/":
 		w.Write([]byte(index))
-	case "/api/v1/wordlist":
+	case "/api/v1/phrase":
 		// adjective 1
 		adj1 := rand.Intn(adjectiveLen)
 		// adjective 2
@@ -100,7 +100,7 @@ const index = `
 	<script>
 	window.addEventListener('load', _ => {
 		document.getElementById('submit').addEventListener('click', _ => {
-			fetch('/api/v1/wordlist', {
+			fetch('/api/v1/phrase', {
 				method: 'GET'
 			}).then(response => {
 				if (response.ok) {
