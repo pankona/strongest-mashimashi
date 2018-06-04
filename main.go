@@ -112,22 +112,27 @@ const index = `
 	</style>
 	<script>
 	window.addEventListener('load', _ => {
+		generate();
 		document.getElementById('submit').addEventListener('click', _ => {
-			fetch('/api/v1/phrase', {
-				method: 'GET'
-			}).then(response => {
-				if (response.ok) {
-					return response.text();
-				} else {
-					throw new Error();
-				}
-			}).then(text => {
-				document.getElementById('phrase').textContent = text;
-			}).catch(error => {
-				console.log(error);
-			});
+			generate();
 		});
 	});
+
+	const generate = () => {
+		fetch('/api/v1/phrase', {
+			method: 'GET'
+		}).then(response => {
+			if (response.ok) {
+				return response.text();
+			} else {
+				throw new Error();
+			}
+		}).then(text => {
+			document.getElementById('phrase').textContent = text;
+		}).catch(error => {
+			console.log(error);
+		});
+	}
 
 	const copyText = (str) => {
 		const tmp = document.createElement('div');
