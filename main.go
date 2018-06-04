@@ -20,17 +20,17 @@ const (
 	adjectiveLen = 26664
 )
 
-type handler struct {
+type apiv1Handler struct {
 	noun, adjective []string
 }
 
 const (
-	apiv1Prefix = "/api/v1"
+	apiv1Prefix = "/api/v1/"
 )
 
-func (h *handler) Get(ctx context.Context, w http.ResponseWriter, r *http.Request) {
+func (h *apiv1Handler) Get(ctx context.Context, w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
-	case apiv1Prefix + "/phrase":
+	case apiv1Prefix + "phrase":
 		// adjective 1
 		adj1 := rand.Intn(adjectiveLen)
 		// adjective 2
@@ -41,7 +41,7 @@ func (h *handler) Get(ctx context.Context, w http.ResponseWriter, r *http.Reques
 	}
 }
 
-func (h *handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (h *apiv1Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	ctx := appengine.NewContext(r)
 	switch r.Method {
 	case http.MethodGet:
@@ -71,21 +71,21 @@ func loadWords(filename string, lines int) ([]string, error) {
 func main() {
 	rand.Seed(time.Now().UnixNano())
 	var err error
-	h := &handler{}
+	h1 := &apiv1Handler{}
 
-	h.noun, err = loadWords("noun.txt", nounLen)
+	h1.noun, err = loadWords("noun.txt", nounLen)
 	if err != nil {
 		log.Errorf("failed to read noun: %s", err.Error())
 		return
 	}
 
-	h.adjective, err = loadWords("adjective.txt", adjectiveLen)
+	h1.adjective, err = loadWords("adjective.txt", adjectiveLen)
 	if err != nil {
 		log.Errorf("failed to read adjective: %s", err.Error())
 		return
 	}
 
 	http.Handle("/", http.FileServer(http.Dir("./webapp/public")))
-	http.Handle(apiv1Prefix, h)
+	http.Handle(apiv1Prefix, h1)
 	appengine.Main()
 }
