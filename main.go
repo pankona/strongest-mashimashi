@@ -180,6 +180,7 @@ const index = `
 <span><button id="copy" onclick="copyWithoutWhiteSpace('phrase')">Copy to clipboard (without whitespace)</button></span>
 <br>
 <br>
+Generated phrase:
 <div id="phrase" style="font-size:x-large">--- --- ---</div>
 <br>
 <br>
