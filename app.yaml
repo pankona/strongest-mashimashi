@@ -11,4 +11,10 @@ automatic_scaling:
   max_pending_latency: 2000ms
 
 skip_files:
-- ^node_modules/(.*/)?
+- app.yaml
+- webapp/node_modules/(.*/)?
+- webapp/package.json
+- webapp/public
+- webapp/README.md
+- webapp/src
+- webapp/yarn.lock
