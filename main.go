@@ -85,7 +85,7 @@ func main() {
 		return
 	}
 
-	http.Handle("/", http.FileServer(http.Dir("./webapp/public")))
+	http.Handle("/", http.FileServer(http.Dir("./webapp/build")))
 	http.Handle(apiv1Prefix, h1)
 	appengine.Main()
 }
