@@ -43,12 +43,12 @@ class PhraGen extends React.Component {
     document.body.removeChild(tmp);
   }
 
-  copyRaw(id) {
+  copyRaw() {
     const text = this.state.phrase
     this.copyText(text);
   }
 
-  copyWithoutWhiteSpace(id) {
+  copyWithoutWhiteSpace() {
     const text = this.state.phrase
     this.copyText(text.replace(/\s+/g, ""));
   }
@@ -57,9 +57,9 @@ class PhraGen extends React.Component {
     return (
     <div>
       <div>
-        <span><button onClick={this.generate.bind(this)}>Push to re-generate a phrase</button></span>
-        <span><button onClick={this.copyRaw.bind(this)}>Copy to clipboard</button></span>
-        <span><button onClick={this.copyWithoutWhiteSpace.bind(this)}>Copy to clipboard (without whitespace)</button></span>
+        <span><button onClick={(e) => this.generate()}>Push to re-generate a phrase</button></span>
+        <span><button onClick={(e) => this.copyRaw()}>Copy to clipboard</button></span>
+        <span><button onClick={(e) => this.copyWithoutWhiteSpace()}>Copy to clipboard (without whitespace)</button></span>
       </div>
       <div style={{fontSize:"x-large"}}>
         generated phrase:
