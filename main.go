@@ -175,7 +175,7 @@ const index = `
 <li>Note that since a word (listed in dictionary) may include whitespace or hyphen, the generated phrase may look like more than 3 words.</li>
 <br>
 <br>
-<span><button id="submit">Push to generate a phrase</button></span>
+<span><button id="submit">Push to re-generate a phrase</button></span>
 <span><button id="copy" onclick="copyRaw('phrase')">Copy to clipboard</button></span>
 <span><button id="copy" onclick="copyWithoutWhiteSpace('phrase')">Copy to clipboard (without whitespace)</button></span>
 <br>
