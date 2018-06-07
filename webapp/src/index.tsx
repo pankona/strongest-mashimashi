@@ -1,14 +1,16 @@
-import * as React    from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
-interface IState { phrase: string };
+interface IState {
+  phrase: string;
+}
 
 class PhraGen extends React.Component<{}, IState> {
   constructor(props) {
     super(props);
     this.state = {
       phrase: ""
-    }
+    };
     this.onClick = this.onClick.bind(this);
   }
 
@@ -18,20 +20,28 @@ class PhraGen extends React.Component<{}, IState> {
 
   public render() {
     return (
-    <div>
       <div>
-        <span><button name="regenerate" onClick={this.onClick}>Push to re-generate a phrase</button></span>
-        <span><button name="copyRaw" onClick={this.onClick}>Copy to clipboard</button></span>
-        <span><button name="copyWithoutWhiteSpace" onClick={this.onClick}>Copy to clipboard (without whitespace)</button></span>
+        <div>
+          <span>
+            <button name="regenerate" onClick={this.onClick}>
+              Push to re-generate a phrase
+            </button>
+          </span>
+          <span>
+            <button name="copyRaw" onClick={this.onClick}>
+              Copy to clipboard
+            </button>
+          </span>
+          <span>
+            <button name="copyWithoutWhiteSpace" onClick={this.onClick}>
+              Copy to clipboard (without whitespace)
+            </button>
+          </span>
+        </div>
+        <div style={{ fontSize: "x-large" }}>generated phrase:</div>
+        <div style={{ fontSize: "x-large" }}>{this.state.phrase}</div>
       </div>
-      <div style={{fontSize:"x-large"}}>
-        generated phrase:
-      </div>
-      <div style={{fontSize:"x-large"}}>
-        {this.state.phrase}
-      </div>
-    </div>
-    )
+    );
   }
 
   private onClick(e: React.SyntheticEvent<HTMLButtonElement>) {
@@ -52,48 +62,47 @@ class PhraGen extends React.Component<{}, IState> {
   }
 
   private copyRaw() {
-    const text = this.state.phrase
+    const text = this.state.phrase;
     this.copyText(text);
   }
 
   private copyWithoutWhiteSpace() {
-    const text = this.state.phrase
+    const text = this.state.phrase;
     this.copyText(text.replace(/\s+/g, ""));
   }
 
   private generate() {
-    fetch('/api/v1/phrase', {
-      method: 'GET'
-    }).then(response => {
-      if (response.ok) {
-        return response.text();
-      } else {
+    fetch("/api/v1/phrase", {
+      method: "GET"
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.text();
+        } else {
+          throw new Error();
+        }
+      })
+      .then(text => {
+        this.setState({ phrase: text });
+      })
+      .catch(error => {
         throw new Error();
-      }
-    }).then(text => {
-      this.setState({phrase:text});
-    }).catch(error => {
-      throw new Error();
-    });
+      });
   }
 
   private copyText(str) {
-    const tmp = document.createElement('div');
-    tmp.appendChild(document.createElement('pre')).textContent = str;
+    const tmp = document.createElement("div");
+    tmp.appendChild(document.createElement("pre")).textContent = str;
 
     const s = tmp.style;
-    s.position = 'fixed';
-    s.left = '-100%';
+    s.position = "fixed";
+    s.left = "-100%";
 
     document.body.appendChild(tmp);
     document.getSelection().selectAllChildren(tmp);
-    document.execCommand('copy');
+    document.execCommand("copy");
     document.body.removeChild(tmp);
   }
 }
 
-ReactDOM.render(
-  <PhraGen />,
-  document.getElementById('phrase')
-);
-
+ReactDOM.render(<PhraGen />, document.getElementById("phrase"));
