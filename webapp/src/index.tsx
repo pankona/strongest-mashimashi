@@ -21,25 +21,19 @@ class PhraGen extends React.Component<{}, IState> {
   public render() {
     return (
       <div>
-        <div>
-          <span>
-            <button className="button is-primary is-medium" name="regenerate" onClick={this.onClick}>
-              Push to re-generate a phrase
-            </button>
-          </span>
-          <span>
-            <button className="button is-info is-medium" name="copyRaw" onClick={this.onClick}>
-              Copy to clipboard
-            </button>
-          </span>
-          <span>
-            <button className="button is-info is-medium" name="copyWithoutWhiteSpace" onClick={this.onClick}>
-              Copy to clipboard (without whitespace)
-            </button>
-          </span>
+        <div className="content">
+          <button className="button is-primary is-medium" name="regenerate" onClick={this.onClick}>
+            Push to re-generate a phrase
+          </button>
         </div>
-        <div style={{ fontSize: "x-large" }}>generated phrase:</div>
-        <div style={{ fontSize: "x-large" }}>{this.state.phrase}</div>
+        <div className="content" style={{ fontSize: "x-large" }}>generated phrase:</div>
+        <div className="content" style={{ fontSize: "x-large" }}>{this.state.phrase}</div>
+        <button className="button is-info is-medium" name="copyRaw" onClick={this.onClick}>
+          Copy to clipboard
+        </button>&nbsp;
+        <button className="button is-info is-medium" name="copyWithoutWhiteSpace" onClick={this.onClick}>
+          Copy to clipboard (without whitespace)
+        </button>
       </div>
     );
   }
