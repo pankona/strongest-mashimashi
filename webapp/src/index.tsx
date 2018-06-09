@@ -26,8 +26,10 @@ class PhraGen extends React.Component<{}, IState> {
             Push to re-generate a phrase
           </button>
         </div>
-        <div className="content" style={{ fontSize: "x-large" }}>generated phrase:</div>
-        <div className="content" style={{ fontSize: "x-large" }}>{this.state.phrase}</div>
+        <div className="content">
+          <div style={{ fontSize: "large" }}>generated phrase:</div>
+          <div style={{ fontSize: "x-large" }}>{this.state.phrase}</div>
+        </div>
         <button className="button is-info is-medium" name="copyRaw" onClick={this.onClick}>
           Copy to clipboard
         </button>&nbsp;
@@ -66,6 +68,8 @@ class PhraGen extends React.Component<{}, IState> {
   }
 
   private generate() {
+    // this.setState({ phrase: "super simple phrase" });
+    // return
     fetch("/api/v1/phrase", {
       method: "GET"
     })
