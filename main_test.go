@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func TestReadWords(t *testing.T) {
-	noun, err := readWords("noun.txt", 76216)
+func TestLoadWords(t *testing.T) {
+	noun, err := loadWords("noun.txt", 76216)
 	if err != nil {
 		t.Fatalf("failed to read words: %s", err.Error())
 	}
@@ -13,7 +13,7 @@ func TestReadWords(t *testing.T) {
 		t.Errorf("unexpected result. [got] %d [want] %d", len(noun), 76216)
 	}
 
-	adjective, err := readWords("adjective.txt", 26664)
+	adjective, err := loadWords("adjective.txt", 26664)
 	if err != nil {
 		t.Fatalf("failed to read words: %s", err.Error())
 	}
