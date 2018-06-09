@@ -55,13 +55,12 @@ func (h *apiv1Handler) Get(ctx context.Context, w http.ResponseWriter, r *http.R
 			n = 3 // default value
 		}
 
-		// adjective 1
-		adj1 := rand.Intn(adjectiveLen)
-		// adjective 2
-		adj2 := rand.Intn(adjectiveLen)
-		// noun
-		noun3 := rand.Intn(adjectiveLen)
-		w.Write([]byte(h.adjective[adj1] + " " + h.adjective[adj2] + " " + h.noun[noun3]))
+		var phrase string
+		for i := 0; i < n; i++ {
+			phrase += h.adjective[rand.Intn(adjectiveLen)] + " "
+		}
+		phrase += h.noun[rand.Intn(adjectiveLen)]
+		w.Write([]byte(phrase))
 	}
 }
 
