@@ -23,17 +23,17 @@ class PhraGen extends React.Component<{}, IState> {
       <div>
         <div>
           <span>
-            <button name="regenerate" onClick={this.onClick}>
+            <button className="button is-primary is-medium" name="regenerate" onClick={this.onClick}>
               Push to re-generate a phrase
             </button>
           </span>
           <span>
-            <button name="copyRaw" onClick={this.onClick}>
+            <button className="button is-info is-medium" name="copyRaw" onClick={this.onClick}>
               Copy to clipboard
             </button>
           </span>
           <span>
-            <button name="copyWithoutWhiteSpace" onClick={this.onClick}>
+            <button className="button is-info is-medium" name="copyWithoutWhiteSpace" onClick={this.onClick}>
               Copy to clipboard (without whitespace)
             </button>
           </span>
