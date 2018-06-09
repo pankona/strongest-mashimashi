@@ -5,7 +5,9 @@ import (
 	"errors"
 	"math/rand"
 	"net/http"
+	"net/url"
 	"os"
+	"strconv"
 	"time"
 
 	"github.com/labstack/gommon/log"
@@ -28,9 +30,31 @@ const (
 	apiv1Prefix = "/api/v1/"
 )
 
+func getNumFromQuery(values url.Values) (int, error) {
+	if len(values["num"]) == 0 {
+		return 0, errors.New("num is not specified in query")
+	}
+
+	num, err := strconv.Atoi(values["num"][0])
+	if err != nil {
+		return 0, errors.New("invalid num [" + values["num"][0] + "] is specified. must be a integer")
+	}
+
+	if num <= 0 || num >= 6 {
+		return 0, errors.New("invalid num [" + values["num"][0] + "] is specified. must be in a range from 1 to 5")
+	}
+
+	return num, nil
+}
+
 func (h *apiv1Handler) Get(ctx context.Context, w http.ResponseWriter, r *http.Request) {
 	switch r.URL.Path {
 	case apiv1Prefix + "phrase":
+		n, err := getNumFromQuery(r.URL.Query())
+		if err != nil {
+			n = 3 // default value
+		}
+
 		// adjective 1
 		adj1 := rand.Intn(adjectiveLen)
 		// adjective 2
