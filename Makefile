@@ -17,7 +17,7 @@ deploy: $(TMP_VENDOR)/.touch
 $(TMP_VENDOR)/.touch:
 	dep ensure
 	mkdir -p $(CUR_VENDOR)/src
-	mv $(CUR_VENDOR)/* $(CUR_VENDOR)/src/. || true
+	mv $(CUR_VENDOR)/* $(CUR_VENDOR)/src/. 2> /dev/null || true
 	mv $(CUR_VENDOR) $(TMP_VENDOR)
 	touch $(TMP_VENDOR)/.touch
 
