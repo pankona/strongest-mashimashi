@@ -1,7 +1,7 @@
 
 
 # retrieve list of app versions to delete
-VERSIONS := $(shell gcloud app versions list --service default --format="value(version.id)" --filter="traffic_split=0.0")
+VERSIONS = $(shell gcloud app versions list --service default --format="value(version.id)" --filter="traffic_split=0.0")
 
 CUR_VENDOR := $(CURDIR)/vendor
 TMP_VENDOR := /tmp/vendor
