@@ -15,7 +15,7 @@ deploy: $(TMP_VENDOR)/.touch
 	GOPATH=$(TMP_VENDOR) gcloud app deploy -q --promote --stop-previous-version
 
 $(TMP_VENDOR)/.touch:
-	dep ensure
+	go mod -vendor
 	mkdir -p $(CUR_VENDOR)/src
 	mv $(CUR_VENDOR)/* $(CUR_VENDOR)/src/. 2> /dev/null || true
 	mv $(CUR_VENDOR) $(TMP_VENDOR)
