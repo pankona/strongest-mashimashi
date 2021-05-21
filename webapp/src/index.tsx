@@ -1,8 +1,8 @@
-import firebase from "firebase";
 import React from "react";
 import ReactDOM from "react-dom";
+import firebase from "./firebase";
 
-const PhraGen: React.FC = () => {
+const PhraGen: React.FC = (): JSX.Element => {
   const [phrase, setPhrase] = React.useState<string>("");
 
   React.useEffect(() => {
