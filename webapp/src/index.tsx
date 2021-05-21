@@ -62,7 +62,7 @@ const PhraGen: React.FC = () => {
 };
 
 const generate = (): string => {
-  fetch("/api/v1/phrase", {
+  fetch("https://asia-northeast1-strongest-mashimashi.cloudfunctions.net/generate", {
     method: "GET",
   })
     .then((response) => {
