@@ -5,17 +5,25 @@ import firebase from "./firebase";
 const PhraGen: React.FC = (): JSX.Element => {
   const [phrase, setPhrase] = React.useState<string>("");
 
+  const fetchPhrase = () => {
+    generate()
+      .then((newPhrase: string) => {
+        setPhrase(newPhrase);
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  };
+
   React.useEffect(() => {
-    const newPhrase = generate();
-    setPhrase(newPhrase);
-  });
+    fetchPhrase();
+  }, []);
 
   const onClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     const target = e.currentTarget;
     switch (target.name) {
       case "regenerate":
-        const newPhrase = generate();
-        setPhrase(newPhrase);
+        fetchPhrase();
         break;
       case "copyRaw":
         copyRaw(phrase);
@@ -62,15 +70,14 @@ const PhraGen: React.FC = (): JSX.Element => {
   );
 };
 
-const generate = (): string => {
-  firebase
+const generate = async (): Promise<string> => {
+  const phrase = await firebase
     .app()
     .functions("asia-northeast1")
     .httpsCallable("generate")({})
     .then((response) => {
-      console.log(response);
       if (response.data) {
-        return response.data() as string;
+        return response.data.phrase;
       } else {
         throw new Error();
       }
@@ -81,7 +88,7 @@ const generate = (): string => {
     .catch((err) => {
       throw new Error(err);
     });
-  return "";
+  return phrase;
 };
 
 const copyRaw = (str: string) => {
