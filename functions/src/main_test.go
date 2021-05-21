@@ -5,24 +5,6 @@ import (
 	"testing"
 )
 
-func TestLoadWords(t *testing.T) {
-	nouns, err := loadWords("noun.txt", 76216)
-	if err != nil {
-		t.Fatalf("failed to read words: %s", err.Error())
-	}
-	if len(nouns) != 76216 {
-		t.Errorf("unexpected result. [got] %d [want] %d", len(nouns), 76216)
-	}
-
-	adjectives, err := loadWords("adjective.txt", 26664)
-	if err != nil {
-		t.Fatalf("failed to read words: %s", err.Error())
-	}
-	if len(adjectives) != 26664 {
-		t.Errorf("unexpected result. [got] %d [want] %d", len(adjectives), 76216)
-	}
-}
-
 func TestGetNumFromQuery(t *testing.T) {
 	tests := []struct {
 		inValues  url.Values

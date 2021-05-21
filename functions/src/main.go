@@ -1,33 +1,19 @@
 package phragen
 
 import (
-	"bufio"
 	"errors"
 	"math/rand"
 	"net/http"
 	"net/url"
-	"os"
 	"strconv"
 	"time"
 
 	"golang.org/x/net/context"
-
-	"google.golang.org/appengine"
-)
-
-const (
-	// inspect word files in advance by "wc -l" command
-	nounLen      = 76216
-	adjectiveLen = 26664
 )
 
 type apiv1Handler struct {
 	nouns, adjectives []string
 }
-
-const (
-	apiv1Prefix = "/api/v1/"
-)
 
 func getNumFromQuery(values url.Values) (int, error) {
 	if len(values["num"]) == 0 {
@@ -61,35 +47,18 @@ func (h *apiv1Handler) Get(ctx context.Context, w http.ResponseWriter, r *http.R
 	w.Write([]byte(phrase))
 }
 
-func (h *apiv1Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	ctx := appengine.NewContext(r)
-	switch r.Method {
-	case http.MethodGet:
-		h.Get(ctx, w, r)
-	default:
-		w.Write([]byte("unimplemented method!"))
-	}
-}
-
-func loadWords(filename string, lines int) ([]string, error) {
-	f, err := os.Open(filename)
-	if err != nil {
-		return nil, errors.New("failed to open " + filename + ": " + err.Error())
-	}
-	defer f.Close()
-
-	words := make([]string, lines)
-	var c int
-	s := bufio.NewScanner(f)
-	for s.Scan() {
-		words[c] = s.Text()
-		c++
-	}
-	return words, nil
-}
-
 func Generate(w http.ResponseWriter, r *http.Request) {
 	ctx := context.Background()
+
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	if r.Method == http.MethodOptions {
+		w.Header().Set("Access-Control-Allow-Methods", "GET")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Max-Age", "3600")
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
 
 	rand.Seed(time.Now().UnixNano())
 	h := &apiv1Handler{
