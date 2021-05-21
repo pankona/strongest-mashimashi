@@ -17,7 +17,7 @@
     "@types/firebase": "^3.2.1",
     "@types/jest": "^23.0.0",
     "@types/node": "^10.3.1",
-    "@types/react": "^16.3.16",
+    "@types/react": "^17.0.6",
     "@types/react-dom": "^16.0.6",
     "firebase": "^8.6.2",
     "firebase-tools": "^9.11.0",
