@@ -1,5 +1,6 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+import firebase from "firebase";
 
 const PhraGen: React.FC = () => {
   const [phrase, setPhrase] = React.useState<string>("");
@@ -62,12 +63,13 @@ const PhraGen: React.FC = () => {
 };
 
 const generate = (): string => {
-  fetch("/functions/generate", {
-    method: "GET",
-  })
+  firebase
+    .app()
+    .functions("asia-northeast1")
+    .httpsCallable("generate")({})
     .then((response) => {
-      if (response.ok) {
-        return response.text();
+      if (response.data) {
+        return response.data() as string;
       } else {
         throw new Error();
       }
