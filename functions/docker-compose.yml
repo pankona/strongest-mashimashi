@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  gcloud:
+    build: .
+    tty: true
+    environment:
+      CLOUDSDK_CONFIG: /gcloudsdk_config
+
+    volumes:
+      - ./src:/src:cached
+      - gcloudsdk_config:/gcloudsdk_config
+
+volumes:
+  gcloudsdk_config:

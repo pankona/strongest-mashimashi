@@ -1,4 +1,4 @@
-package main
+package phragen
 
 import (
 	"bufio"
@@ -23,7 +23,7 @@ const (
 )
 
 type apiv1Handler struct {
-	noun, adjective []string
+	nouns, adjectives []string
 }
 
 const (
@@ -58,9 +58,9 @@ func (h *apiv1Handler) Get(ctx context.Context, w http.ResponseWriter, r *http.R
 		var phrase string
 		// -1 loop count since noun must be reserved
 		for i := 0; i < n-1; i++ {
-			phrase += h.adjective[rand.Intn(len(h.adjective))] + " "
+			phrase += h.adjectives[rand.Intn(len(h.adjectives))] + " "
 		}
-		phrase += h.noun[rand.Intn(len(h.noun))]
+		phrase += h.nouns[rand.Intn(len(h.nouns))]
 		w.Write([]byte(phrase))
 	}
 }
@@ -92,24 +92,31 @@ func loadWords(filename string, lines int) ([]string, error) {
 	return words, nil
 }
 
-func main() {
+func Generate(w http.ResponseWriter, r *http.Request) {
+	var (
+		err error
+		ctx = context.Background()
+	)
 	rand.Seed(time.Now().UnixNano())
-	var err error
-	h1 := &apiv1Handler{}
+	h := &apiv1Handler{}
 
-	h1.noun, err = loadWords("noun.txt", nounLen)
+	h.nouns, err = loadWords("noun.txt", nounLen)
 	if err != nil {
-		log.Errorf("failed to read noun: %s", err.Error())
+		log.Errorf("failed to read noun: %v", err)
 		return
 	}
 
-	h1.adjective, err = loadWords("adjective.txt", adjectiveLen)
+	h.adjectives, err = loadWords("adjective.txt", adjectiveLen)
 	if err != nil {
-		log.Errorf("failed to read adjective: %s", err.Error())
+		log.Errorf("failed to read adjective: %v", err)
 		return
 	}
 
-	http.Handle("/", http.FileServer(http.Dir("./webapp/build")))
-	http.Handle(apiv1Prefix, h1)
-	appengine.Main()
+	switch r.Method {
+	case http.MethodGet:
+		h.Get(ctx, w, r)
+	default:
+		w.WriteHeader(http.StatusNotFound)
+		w.Write([]byte("This method is not supported"))
+	}
 }
