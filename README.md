@@ -1,7 +1,7 @@
 # strongest-mashimashi
 
 Phrase generator for stronger password/passphrase.  
-Visit [http://strongest-mashimashi.appspot.com/](http://strongest-mashimashi.appspot.com/) to see the function.
+Visit [https://strongest-mashimashi.web.app/](https://strongest-mashimashi.web.app/) to see the function.
 
 ## This is...
 
@@ -17,7 +17,7 @@ Visit [http://strongest-mashimashi.appspot.com/](http://strongest-mashimashi.app
 
 For example, using curl, use API as follows.
 ```bash
-$ curl -X GET http://strongest-mashimashi.appspot.com/api/v1/phrase?num=3
+$ curl -X POST https://asia-northeast1-strongest-mashimashi.cloudfunctions.net/generate?num=3
 ```
 
 * phrase length can be specified using query `num`.
@@ -26,7 +26,7 @@ $ curl -X GET http://strongest-mashimashi.appspot.com/api/v1/phrase?num=3
     * If `num` is 1, then a noun will be returned.
     * If `num` is 3, then 2 adjective and 1 noun will be returned.
     * If `num` is 5, then 4 adjective and 1 noun will be returned.
-  * Neither `num` cannot be negative, more than equal 6, nor other than integer.
+  * Neither `num` cannot be negative, nor more than equal 6, nor other than integer.
 
 ## LICENSE
 
