@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.4.0",
-    "react-dom": "^16.4.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-scripts-ts": "3.1.0"
   },
   "scripts": {
@@ -14,10 +14,12 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "@types/jest": "^23.0.0",
     "@types/node": "^10.3.1",
     "@types/react": "^16.3.16",
     "@types/react-dom": "^16.0.6",
+    "firebase": "^8.6.2",
     "firebase-tools": "^9.11.0",
     "prettier": "^2.3.0",
     "typescript": "^4.2.4"
