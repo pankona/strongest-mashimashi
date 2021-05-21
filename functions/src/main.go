@@ -1,6 +1,7 @@
 package phragen
 
 import (
+	"encoding/json"
 	"errors"
 	"math/rand"
 	"net/http"
@@ -13,6 +14,10 @@ import (
 
 type apiv1Handler struct {
 	nouns, adjectives []string
+}
+
+type response struct {
+	Phrase string `json:"phrase"`
 }
 
 func getNumFromQuery(values url.Values) (int, error) {
@@ -32,7 +37,7 @@ func getNumFromQuery(values url.Values) (int, error) {
 	return num, nil
 }
 
-func (h *apiv1Handler) Get(ctx context.Context, w http.ResponseWriter, r *http.Request) {
+func (h *apiv1Handler) Post(ctx context.Context, w http.ResponseWriter, r *http.Request) {
 	n, err := getNumFromQuery(r.URL.Query())
 	if err != nil {
 		n = 3 // default value
@@ -44,7 +49,14 @@ func (h *apiv1Handler) Get(ctx context.Context, w http.ResponseWriter, r *http.R
 		phrase += h.adjectives[rand.Intn(len(h.adjectives))] + " "
 	}
 	phrase += h.nouns[rand.Intn(len(h.nouns))]
-	w.Write([]byte(phrase))
+
+	resp := response{Phrase: phrase}
+	buf, err := json.Marshal(resp)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	w.Write(buf)
 }
 
 func Generate(w http.ResponseWriter, r *http.Request) {
@@ -53,7 +65,7 @@ func Generate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	if r.Method == http.MethodOptions {
-		w.Header().Set("Access-Control-Allow-Methods", "GET")
+		w.Header().Set("Access-Control-Allow-Methods", "POST")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Set("Access-Control-Max-Age", "3600")
 		w.WriteHeader(http.StatusNoContent)
@@ -67,8 +79,8 @@ func Generate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	switch r.Method {
-	case http.MethodGet:
-		h.Get(ctx, w, r)
+	case http.MethodPost:
+		h.Post(ctx, w, r)
 	default:
 		w.WriteHeader(http.StatusNotFound)
 		w.Write([]byte("This method is not supported"))
