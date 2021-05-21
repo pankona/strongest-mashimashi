@@ -6,10 +6,10 @@ interface IState {
 }
 
 class PhraGen extends React.Component<{}, IState> {
-  constructor(props) {
+  constructor(props: IState) {
     super(props);
     this.state = {
-      phrase: ""
+      phrase: "",
     };
     this.onClick = this.onClick.bind(this);
   }
@@ -22,7 +22,11 @@ class PhraGen extends React.Component<{}, IState> {
     return (
       <div>
         <div className="content">
-          <button className="button is-primary is-medium" name="regenerate" onClick={this.onClick}>
+          <button
+            className="button is-primary is-medium"
+            name="regenerate"
+            onClick={this.onClick}
+          >
             Push to re-generate a phrase
           </button>
         </div>
@@ -30,10 +34,19 @@ class PhraGen extends React.Component<{}, IState> {
           <div style={{ fontSize: "large" }}>generated phrase:</div>
           <div style={{ fontSize: "x-large" }}>{this.state.phrase}</div>
         </div>
-        <button className="button is-info is-medium" name="copyRaw" onClick={this.onClick}>
+        <button
+          className="button is-info is-medium"
+          name="copyRaw"
+          onClick={this.onClick}
+        >
           Copy to clipboard
-        </button>&nbsp;
-        <button className="button is-info is-medium" name="copyWithoutWhiteSpace" onClick={this.onClick}>
+        </button>
+        &nbsp;
+        <button
+          className="button is-info is-medium"
+          name="copyWithoutWhiteSpace"
+          onClick={this.onClick}
+        >
           Copy to clipboard (without whitespace)
         </button>
       </div>
@@ -68,27 +81,25 @@ class PhraGen extends React.Component<{}, IState> {
   }
 
   private generate() {
-    // this.setState({ phrase: "super simple phrase" });
-    // return
     fetch("/api/v1/phrase", {
-      method: "GET"
+      method: "GET",
     })
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
           return response.text();
         } else {
           throw new Error();
         }
       })
-      .then(text => {
+      .then((text) => {
         this.setState({ phrase: text });
       })
-      .catch(error => {
+      .catch((_) => {
         throw new Error();
       });
   }
 
-  private copyText(str) {
+  private copyText(str: string) {
     const tmp = document.createElement("div");
     tmp.appendChild(document.createElement("pre")).textContent = str;
 
@@ -97,7 +108,7 @@ class PhraGen extends React.Component<{}, IState> {
     s.left = "-100%";
 
     document.body.appendChild(tmp);
-    document.getSelection().selectAllChildren(tmp);
+    document.getSelection()?.selectAllChildren(tmp);
     document.execCommand("copy");
     document.body.removeChild(tmp);
   }
