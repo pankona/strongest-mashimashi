@@ -21,3 +21,4 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_STRONGEST_MASHIMASHI }}'
           channelId: live
           projectId: strongest-mashimashi
+          entryPoint: ./webapp
