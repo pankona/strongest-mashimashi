@@ -2,16 +2,21 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-scripts-ts": "3.1.0"
-  },
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
+    "eject": "react-scripts-ts eject",
+    "prettier-check": "prettier --list-different \"src/**/*.{ts,tsx,css,scss}\"",
+    "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,css,scss}\"",
+    "eslint": "eslint \"src/**/*.{ts,tsx}\"",
+    "eslint:fix": "eslint --fix \"src/**/*.{ts,tsx}\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-scripts-ts": "3.1.0"
   },
   "devDependencies": {
     "@types/firebase": "^3.2.1",
@@ -19,6 +24,9 @@
     "@types/node": "^10.3.1",
     "@types/react": "^17.0.6",
     "@types/react-dom": "^16.0.6",
+    "@typescript-eslint/parser": "^4.24.0",
+    "eslint": "^7.26.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "firebase": "^8.6.2",
     "firebase-tools": "^9.11.0",
     "prettier": "^2.3.0",
