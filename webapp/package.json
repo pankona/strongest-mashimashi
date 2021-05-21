@@ -10,7 +10,8 @@
     "prettier-check": "prettier --list-different \"src/**/*.{ts,tsx,css,scss}\"",
     "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,css,scss}\"",
     "eslint": "eslint \"src/**/*.{ts,tsx}\"",
-    "eslint:fix": "eslint --fix \"src/**/*.{ts,tsx}\""
+    "eslint:fix": "eslint --fix \"src/**/*.{ts,tsx}\"",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "react": "17.0.2",
