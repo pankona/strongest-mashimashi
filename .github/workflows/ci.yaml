@@ -23,7 +23,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: yarn install
-      - run: yarn lint
+      - run: yarn eslint
+
+  prettier-check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./webapp
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install
+      - run: yarn prettier-check
 
   build:
     runs-on: ubuntu-latest

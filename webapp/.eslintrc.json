@@ -1,0 +1,13 @@
+{
+  "extends": ["plugin:react-hooks/recommended"],
+  "plugins": ["react-hooks"],
+  "parser": "@typescript-eslint/parser",
+  "env": { "browser": true, "node": true, "es6": true },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}
