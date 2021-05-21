@@ -68,6 +68,7 @@ const generate = (): string => {
     .functions("asia-northeast1")
     .httpsCallable("generate")({})
     .then((response) => {
+      console.log(response);
       if (response.data) {
         return response.data() as string;
       } else {
@@ -77,8 +78,8 @@ const generate = (): string => {
     .then((text) => {
       return text;
     })
-    .catch((_) => {
-      throw new Error();
+    .catch((err) => {
+      throw new Error(err);
     });
   return "";
 };

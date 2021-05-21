@@ -17,6 +17,10 @@ type apiv1Handler struct {
 }
 
 type response struct {
+	Data data `json:"data"`
+}
+
+type data struct {
 	Phrase string `json:"phrase"`
 }
 
@@ -50,7 +54,7 @@ func (h *apiv1Handler) Post(ctx context.Context, w http.ResponseWriter, r *http.
 	}
 	phrase += h.nouns[rand.Intn(len(h.nouns))]
 
-	resp := response{Phrase: phrase}
+	resp := response{Data: data{Phrase: phrase}}
 	buf, err := json.Marshal(resp)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
