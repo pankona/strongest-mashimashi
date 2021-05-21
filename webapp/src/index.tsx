@@ -1,6 +1,6 @@
+import firebase from "firebase";
 import React from "react";
 import ReactDOM from "react-dom";
-import firebase from "firebase";
 
 const PhraGen: React.FC = () => {
   const [phrase, setPhrase] = React.useState<string>("");
