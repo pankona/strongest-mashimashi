@@ -1,117 +1,106 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-interface IState {
-  phrase: string;
-}
+const PhraGen: React.FC = () => {
+  const [phrase, setPhrase] = React.useState<string>("");
 
-class PhraGen extends React.Component<{}, IState> {
-  constructor(props: IState) {
-    super(props);
-    this.state = {
-      phrase: "",
-    };
-    this.onClick = this.onClick.bind(this);
-  }
+  React.useEffect(() => {
+    const newPhrase = generate();
+    setPhrase(newPhrase);
+  });
 
-  public componentDidMount() {
-    this.generate();
-  }
-
-  public render() {
-    return (
-      <div>
-        <div className="content">
-          <button
-            className="button is-primary is-medium"
-            name="regenerate"
-            onClick={this.onClick}
-          >
-            Push to re-generate a phrase
-          </button>
-        </div>
-        <div className="content">
-          <div style={{ fontSize: "large" }}>generated phrase:</div>
-          <div style={{ fontSize: "x-large" }}>{this.state.phrase}</div>
-        </div>
-        <button
-          className="button is-info is-medium"
-          name="copyRaw"
-          onClick={this.onClick}
-        >
-          Copy to clipboard
-        </button>
-        &nbsp;
-        <button
-          className="button is-info is-medium"
-          name="copyWithoutWhiteSpace"
-          onClick={this.onClick}
-        >
-          Copy to clipboard (without whitespace)
-        </button>
-      </div>
-    );
-  }
-
-  private onClick(e: React.SyntheticEvent<HTMLButtonElement>) {
+  const onClick = (e: React.SyntheticEvent<HTMLButtonElement>) => {
     const target = e.currentTarget;
     switch (target.name) {
       case "regenerate":
-        this.generate();
+        const newPhrase = generate();
+        setPhrase(newPhrase);
         break;
       case "copyRaw":
-        this.copyRaw();
+        copyRaw(phrase);
         break;
       case "copyWithoutWhiteSpace":
-        this.copyWithoutWhiteSpace();
+        copyWithoutWhiteSpace(phrase);
         break;
       default:
         break;
     }
-  }
+  };
 
-  private copyRaw() {
-    const text = this.state.phrase;
-    this.copyText(text);
-  }
+  return (
+    <div>
+      <div className="content">
+        <button
+          className="button is-primary is-medium"
+          name="regenerate"
+          onClick={onClick}
+        >
+          Push to re-generate a phrase
+        </button>
+      </div>
+      <div className="content">
+        <div style={{ fontSize: "large" }}>generated phrase:</div>
+        <div style={{ fontSize: "x-large" }}>{phrase}</div>
+      </div>
+      <button
+        className="button is-info is-medium"
+        name="copyRaw"
+        onClick={onClick}
+      >
+        Copy to clipboard
+      </button>
+      &nbsp;
+      <button
+        className="button is-info is-medium"
+        name="copyWithoutWhiteSpace"
+        onClick={onClick}
+      >
+        Copy to clipboard (without whitespace)
+      </button>
+    </div>
+  );
+};
 
-  private copyWithoutWhiteSpace() {
-    const text = this.state.phrase;
-    this.copyText(text.replace(/\s+/g, ""));
-  }
-
-  private generate() {
-    fetch("/api/v1/phrase", {
-      method: "GET",
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error();
-        }
-      })
-      .then((text) => {
-        this.setState({ phrase: text });
-      })
-      .catch((_) => {
+const generate = (): string => {
+  fetch("/api/v1/phrase", {
+    method: "GET",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response.text();
+      } else {
         throw new Error();
-      });
-  }
+      }
+    })
+    .then((text) => {
+      return text;
+    })
+    .catch((_) => {
+      throw new Error();
+    });
+  return "";
+};
 
-  private copyText(str: string) {
-    const tmp = document.createElement("div");
-    tmp.appendChild(document.createElement("pre")).textContent = str;
+const copyRaw = (str: string) => {
+  copyText(str);
+};
 
-    const s = tmp.style;
-    s.position = "fixed";
-    s.left = "-100%";
+const copyWithoutWhiteSpace = (str: string) => {
+  copyText(str.replace(/\s+/g, ""));
+};
 
-    document.body.appendChild(tmp);
-    document.getSelection()?.selectAllChildren(tmp);
-    document.execCommand("copy");
-    document.body.removeChild(tmp);
-  }
-}
+const copyText = (str: string) => {
+  const tmp = document.createElement("div");
+  tmp.appendChild(document.createElement("pre")).textContent = str;
+
+  const s = tmp.style;
+  s.position = "fixed";
+  s.left = "-100%";
+
+  document.body.appendChild(tmp);
+  document.getSelection()?.selectAllChildren(tmp);
+  document.execCommand("copy");
+  document.body.removeChild(tmp);
+};
 
 ReactDOM.render(<PhraGen />, document.getElementById("phrase"));
