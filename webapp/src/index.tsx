@@ -5,14 +5,9 @@ import firebase from "./firebase";
 const PhraGen: React.FC = (): JSX.Element => {
   const [phrase, setPhrase] = React.useState<string>("");
 
-  const fetchPhrase = () => {
-    generate()
-      .then((newPhrase: string) => {
-        setPhrase(newPhrase);
-      })
-      .catch((err) => {
-        throw new Error(err);
-      });
+  const fetchPhrase = async () => {
+    const ret = await generate();
+    setPhrase(ret);
   };
 
   React.useEffect(() => {
@@ -71,24 +66,11 @@ const PhraGen: React.FC = (): JSX.Element => {
 };
 
 const generate = async (): Promise<string> => {
-  const phrase = await firebase
+  const response = await firebase
     .app()
     .functions("asia-northeast1")
-    .httpsCallable("generate")({})
-    .then((response) => {
-      if (response.data) {
-        return response.data.phrase;
-      } else {
-        throw new Error();
-      }
-    })
-    .then((text) => {
-      return text;
-    })
-    .catch((err) => {
-      throw new Error(err);
-    });
-  return phrase;
+    .httpsCallable("generate")({});
+  return await response.data.phrase;
 };
 
 const copyRaw = (str: string) => {
