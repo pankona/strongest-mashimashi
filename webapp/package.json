@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/firebase": "^3.2.1",
     "@types/jest": "^26.0.24",
-    "@types/node": "^16.3.3",
+    "@types/node": "^16.4.0",
     "@types/react": "^17.0.14",
     "@types/react-dom": "^17.0.9",
     "@typescript-eslint/parser": "^4.28.4",
