@@ -1,12 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import firebase from "./firebase";
+import * as firebase from "./firebase";
+
+firebase.app.initializeApp();
 
 const PhraGen: React.FC = (): JSX.Element => {
   const [phrase, setPhrase] = React.useState<string>("");
 
   const fetchPhrase = async () => {
-    const ret = await generate();
+    const ret = await firebase.functions.generate();
     setPhrase(ret);
   };
 
@@ -65,14 +67,6 @@ const PhraGen: React.FC = (): JSX.Element => {
   );
 };
 
-const generate = async (): Promise<string> => {
-  const response = await firebase
-    .app()
-    .functions("asia-northeast1")
-    .httpsCallable("generate")({});
-  return await response.data.phrase;
-};
-
 const copyRaw = (str: string) => {
   copyText(str);
 };
@@ -95,4 +89,5 @@ const copyText = (str: string) => {
   document.body.removeChild(tmp);
 };
 
+ReactDOM.render(<PhraGen />, document.getElementById("phrase"));
 ReactDOM.render(<PhraGen />, document.getElementById("phrase"));
