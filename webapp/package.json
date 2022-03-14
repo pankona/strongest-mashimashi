@@ -25,7 +25,7 @@
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
     "@typescript-eslint/parser": "^5.14.0",
-    "eslint": "^8.10.0",
+    "eslint": "^8.11.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "firebase": "^9.6.8",
     "firebase-tools": "^10.2.2",
