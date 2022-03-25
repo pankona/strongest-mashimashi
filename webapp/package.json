@@ -27,7 +27,7 @@
     "@typescript-eslint/parser": "^5.16.0",
     "eslint": "^8.11.0",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "firebase": "^9.6.9",
+    "firebase": "^9.6.10",
     "firebase-tools": "^10.4.2",
     "prettier": "^2.6.0",
     "typescript": "^4.6.2"
