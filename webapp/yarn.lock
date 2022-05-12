@@ -4906,20 +4906,20 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-firebase-frameworks@^0.4.0:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/firebase-frameworks/-/firebase-frameworks-0.4.1.tgz#497937b2bfbf3da78cbd9d12232669d01e6dba39"
-  integrity sha512-JozphW1LOwHrN38Die5uj+eCZ9rOdGDKVwYlivvj9yp06U/mV8JsjEna+F8h3sSLuiO4JjFWrh1kwVXQpBi34w==
+firebase-frameworks@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/firebase-frameworks/-/firebase-frameworks-0.4.2.tgz#f112f8afeec35b5532d8b9bbb2886f9cff68f61b"
+  integrity sha512-a3xNE3wPh8JWq2WOgWlSypVS9O/y/3/3Im9EV7bNBF44wFV2oOAyFdVgDk6it81+lBRv7ci8PttgQZohtsFeVA==
   dependencies:
     fs-extra "^10.1.0"
     jsonc-parser "^3.0.0"
     semver "^7.3.7"
     tslib "^2.3.1"
 
-firebase-tools@^10.9.0:
-  version "10.9.0"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-10.9.0.tgz#68c7cc216ae103c884a8f9dfc60529cad593aca9"
-  integrity sha512-2EB8vNVHVYwfrFmKGKg/yPoOiTeofYdFSwiidEJzGpoMHTc2STNXl9n2+u4rA0LHQLl16nyG0A/oQm2UAy4Rjg==
+firebase-tools@^10.9.2:
+  version "10.9.2"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-10.9.2.tgz#44d5228e9b4c367e9a9da18aa21bfa6f857215fc"
+  integrity sha512-oH5AV7mnoIhVsgFT5QI/HeMh7bfpbr60Siw0tbD5FB4xtaqYyyPC42W6/unbLMxlM6qNH3rHe1+PZmU2z7NeWA==
   dependencies:
     "@google-cloud/pubsub" "^2.18.4"
     abort-controller "^3.0.0"
@@ -4942,7 +4942,7 @@ firebase-tools@^10.9.0:
     exit-code "^1.0.2"
     express "^4.16.4"
     filesize "^6.1.0"
-    firebase-frameworks "^0.4.0"
+    firebase-frameworks "^0.4.2"
     fs-extra "^5.0.0"
     glob "^7.1.2"
     google-auth-library "^7.11.0"
