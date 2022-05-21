@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import * as firebase from "./firebase";
 
 firebase.app.initializeApp();
@@ -89,5 +90,4 @@ const copyText = (str: string) => {
   document.body.removeChild(tmp);
 };
 
-ReactDOM.render(<PhraGen />, document.getElementById("phrase"));
-ReactDOM.render(<PhraGen />, document.getElementById("phrase"));
+createRoot(document.getElementById("phrase")!).render(<PhraGen />);
