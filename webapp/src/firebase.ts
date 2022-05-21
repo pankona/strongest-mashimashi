@@ -1,7 +1,7 @@
 import * as firebaseApp from "firebase/app";
 import * as firebaseFunctions from "firebase/functions";
 
-export const app = {
+const app = {
   initializeApp: () =>
     firebaseApp.initializeApp({
       apiKey: "AIzaSyCyGzqeB5UYGmU_qsiMRAcZa88kwEezCD0",
@@ -16,7 +16,7 @@ export const app = {
 export const functions = {
   generate: async (): Promise<string> => {
     const response: any = await firebaseFunctions.httpsCallable(
-      firebaseFunctions.getFunctions(),
+      firebaseFunctions.getFunctions(app.initializeApp(), "asia-northeast1"),
       "generate"
     )({});
     return await response.data.phrase;
