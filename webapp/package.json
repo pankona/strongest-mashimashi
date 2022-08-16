@@ -21,10 +21,10 @@
   "devDependencies": {
     "@types/firebase": "^3.2.1",
     "@types/jest": "^28.1.6",
-    "@types/node": "^18.7.3",
+    "@types/node": "^18.7.5",
     "@types/react": "^17.0.43",
     "@types/react-dom": "^18.0.5",
-    "@typescript-eslint/parser": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.1",
     "eslint": "^8.22.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "firebase": "^9.7.0",
